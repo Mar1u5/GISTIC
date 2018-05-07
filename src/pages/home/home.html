@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+		Lista Pacientes
+	</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+  	<button ion-item *ngFor="let item of items" (click)="nextPage(item)">
+    {{ item }}
+  </button>  
+  </ion-list>
+
+  <ion-fab right bottom>
+     <ion-icon name="md-add-circle"></ion-icon>
+  </ion-fab>
+</ion-content>
