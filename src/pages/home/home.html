@@ -6,14 +6,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-  	<button ion-item *ngFor="let item of items" (click)="nextPage(item)">
-    {{ item }}
-  </button>  
-  </ion-list>
+<ion-content>
+  
+  <div class="pacientes" *ngFor="let paciente of pacientes">
+      <div class="item">
+        <div class="nombre" (click)="nextPage(paciente)">
+          <p>{{ paciente }}</p>
+        </div>
+        <p class="trash" (click)="deletePaciente(paciente)"><ion-icon id="trash" name="md-trash"></ion-icon></p>
+      </div>
+    </div>
 
   <ion-fab right bottom>
-     <ion-icon name="md-add-circle"></ion-icon>
+     <ion-icon name="md-add-circle" (click)="addPaciente()"></ion-icon>
   </ion-fab>
 </ion-content>

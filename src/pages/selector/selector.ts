@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the SelectorPage page.
@@ -22,6 +23,10 @@ export class SelectorPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SelectorPage');
+  }
+
+  goBack(){
+    this.navCtrl.setRoot(HomePage);
   }
 
 }
