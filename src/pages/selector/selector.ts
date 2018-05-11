@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { PillsListPage } from '../pills-list/pills-list';
 
 /**
  * Generated class for the SelectorPage page.
@@ -27,6 +28,9 @@ export class SelectorPage {
 
   goBack(){
     this.navCtrl.setRoot(HomePage);
+  }
+  nextPage(item){
+    this.navCtrl.push(PillsListPage, {item});
   }
 
 }

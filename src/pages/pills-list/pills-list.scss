@@ -1,0 +1,48 @@
+page-pills-list {
+
+    ion-fab{
+		font-size: 35px;
+		color: red;
+	}
+
+	.pacientes{
+		width: 100%;
+		.item{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: calc(100% - 26px);
+			height: 60px;
+			margin: 0 13px;
+			padding: 10px 0;
+			border-bottom: 1px solid #c4c4c4;
+			
+			.nombre{
+				width: calc(100% - 42px - 65px);
+				padding: 0 23px;
+				p:nth-child(1){
+					font-weight: bold;
+					font-size: 14px;
+				}
+				p:nth-child(2){
+					padding-top: 5px;
+					font-size: 14px;
+				}
+				p:nth-child(3){
+					font-size: 12px;
+					padding-top: 5px;
+					ion-icon{
+						padding-right: 2px;
+						color: color($colors, primary);
+					}
+				}
+	
+			}
+			.trash{
+				color: red;
+				width: 45px;
+				font-size: 17px;
+			}
+		}
+	}
+}

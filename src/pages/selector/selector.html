@@ -12,13 +12,13 @@
               <ion-icon name="arrow-back"></ion-icon>
           </button>
       </ion-buttons>
-    <ion-title>{{item}}</ion-title>
+    <ion-title>{{item.nombre}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	<button id="boton1" ion-button>ADMINISTRAR</button>
+	<button id="boton1" ion-button (click)="nextPage(item)">ADMINISTRAR</button>
 	<button id="boton2" ion-button>PLANIFICAR</button>
 </ion-content>

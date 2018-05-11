@@ -11,7 +11,7 @@
   <div class="pacientes" *ngFor="let paciente of pacientes">
       <div class="item">
         <div class="nombre" (click)="nextPage(paciente)">
-          <p>{{ paciente }}</p>
+          <p>{{ paciente.nombre }}</p>
         </div>
         <p class="trash" (click)="deletePaciente(paciente)"><ion-icon id="trash" name="md-trash"></ion-icon></p>
       </div>

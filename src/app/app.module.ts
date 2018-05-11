@@ -9,13 +9,18 @@ import { HomePage } from '../pages/home/home';
 import { SelectorPage } from '../pages/selector/selector';
 import { pacientesService } from '../services/pacientes.service';
 import { AnadirPacientePage } from '../pages/anadir-paciente/anadir-paciente';
+import { PillsListPage } from '../pages/pills-list/pills-list';
+import { AddPastillaPage } from '../pages/add-pastilla/add-pastilla';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SelectorPage,
-    AnadirPacientePage
+    AnadirPacientePage,
+    PillsListPage,
+    AddPastillaPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,9 @@ import { AnadirPacientePage } from '../pages/anadir-paciente/anadir-paciente';
     MyApp,
     HomePage,
     SelectorPage,
-    AnadirPacientePage
+    AnadirPacientePage,
+    PillsListPage,
+    AddPastillaPage
   ],
   providers: [
     StatusBar,
