@@ -23,6 +23,9 @@ color;
 cantidad;
 item;
 pill;
+dia;
+franja;
+splitted = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public PacientesService : pacientesService) {
     this.item = navParams.get('item');
   }
@@ -31,9 +34,17 @@ pill;
     console.log('ionViewDidLoad AddPastillaPage');
   }
   addPastilla(item){
-    this.pill = {nombre: this.pastilla, color: this.color, cantidad: this.cantidad, dia:'', franja:''};
-    this.PacientesService.addPastillas(item, this.pill);
-    this.navCtrl.setRoot(PillsListPage, {item});
-  }
+     console.log(this.dia);
+      for(let i of this.dia){
+        for(let j of this.franja){
+          console.log(i);
+          this.pill = {nombre: this.pastilla, color: this.color, cantidad: this.cantidad, dia: i, franja: j}; 
+          this.PacientesService.addPastillas(item, this.pill);
+        }
+      }
+      this.navCtrl.setRoot(PillsListPage, {item});   
+      
+      
 
+}
 }

@@ -33,23 +33,33 @@ var AddPastillaPage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.PacientesService = PacientesService;
+        this.splitted = [];
         this.item = navParams.get('item');
     }
     AddPastillaPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad AddPastillaPage');
     };
     AddPastillaPage.prototype.addPastilla = function (item) {
-        this.pill = { nombre: this.pastilla, color: this.color, cantidad: this.cantidad, dia: '', franja: '' };
-        this.PacientesService.addPastillas(item, this.pill);
+        console.log(this.dia);
+        for (var _i = 0, _a = this.dia; _i < _a.length; _i++) {
+            var i = _a[_i];
+            for (var _b = 0, _c = this.franja; _b < _c.length; _b++) {
+                var j = _c[_b];
+                console.log(i);
+                this.pill = { nombre: this.pastilla, color: this.color, cantidad: this.cantidad, dia: i, franja: j };
+                this.PacientesService.addPastillas(item, this.pill);
+            }
+        }
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pills_list_pills_list__["a" /* PillsListPage */], { item: item });
     };
     AddPastillaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-add-pastilla',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/add-pastilla/add-pastilla.html"*/'<!--\n  Generated template for the AddPastillaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>addPastilla</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n    <div>\n        <ion-list>\n      \n          <ion-item>\n            <ion-label floating>Nombre Pastilla</ion-label>\n            <ion-input id="nombre" type="text" [(ngModel)]=pastilla></ion-input>\n          </ion-item>\n          <!--<ion-label>Color</ion-label>\n              <ion-select [(ngModel)]="color" multiple="false">\n                <ion-option>Rojo</ion-option>\n                <ion-option>Verde</ion-option>\n                <ion-option>Azul</ion-option>\n                <ion-option>Naranja</ion-option>\n                <ion-option>Amarillo</ion-option>\n              </ion-select>-->\n          <ion-item>\n              <ion-label floating>Color</ion-label>\n              <ion-input id="color" type="text" [(ngModel)]=color></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label floating>Cantidad</ion-label>\n              <ion-input id="cantidad" type="number" [(ngModel)]=cantidad></ion-input>\n            </ion-item>\n        \n        </ion-list>\n        <button ion-button block (click)="addPastilla(item)">Guardar</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/add-pastilla/add-pastilla.html"*/,
+            selector: 'page-add-pastilla',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/add-pastilla/add-pastilla.html"*/'<!--\n  Generated template for the AddPastillaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>addPastilla</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n    <div>\n        <ion-list>\n      \n          <ion-item>\n            <ion-label floating>Nombre Pastilla</ion-label>\n            <ion-input id="nombre" type="text" [(ngModel)]=pastilla></ion-input>\n          </ion-item>\n          <!--<ion-label>Dia</ion-label>\n              <ion-select [(ngModel)]="dia" multiple="True">\n                <ion-option>Lunes</ion-option>\n                <ion-option>Martes</ion-option>\n                <ion-option>Azul</ion-option>\n                <ion-option>Naranja</ion-option>\n                <ion-option>Amarillo</ion-option>\n              </ion-select>-->\n          <ion-item>\n              <ion-label floating>Color</ion-label>\n              <ion-input id="color" type="text" [(ngModel)]=color></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label floating>Cantidad</ion-label>\n              <ion-input id="cantidad" type="number" [(ngModel)]=cantidad></ion-input>\n          </ion-item>\n          <ion-item class="dia">\n              <ion-label>Día</ion-label>\n              <ion-select [(ngModel)]="dia" multiple="True">\n                  <ion-option>Lunes</ion-option>\n                  <ion-option>Martes</ion-option>\n                  <ion-option>Miercoles</ion-option>\n                  <ion-option>Jueves</ion-option>\n                  <ion-option>Viernes</ion-option>\n                  <ion-option>Sabado</ion-option>\n                </ion-select>\n           </ion-item>\n           <ion-item class="dia">\n              <ion-label>Franja horaria</ion-label>\n              <ion-select [(ngModel)]="franja" multiple="True">\n                  <ion-option>Desayuno</ion-option>\n                  <ion-option>Comida</ion-option>\n                  <ion-option>Cena</ion-option>\n                </ion-select>\n           </ion-item>\n        \n        </ion-list>\n        <button ion-button block (click)="addPastilla(item)">Guardar</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/add-pastilla/add-pastilla.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */]) === "function" && _c || Object])
     ], AddPastillaPage);
     return AddPastillaPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=add-pastilla.js.map
@@ -325,10 +335,13 @@ var pacientesService = /** @class */ (function () {
         //pacientes = ["paciente 1", "paciente 2", "paciente 3","paciente 4","paciente 5","paciente 6","paciente 7","paciente 8","paciente 9", "paciente 10"];
         this.pacientes = [
             { nombre: 'Paciente1', pastillas: [
-                    { nombre: 'Omeprazol', color: 'Verde', cantidad: '1', dia: 'Lunes', franja: 'mañana' },
-                    { nombre: 'Paracetamol', color: 'Rojo', cantidad: '0.5', dia: 'Martes', franja: 'mañana' }
+                    { nombre: 'Omeprazol', color: 'Verde', cantidad: '1', dia: '', franja: '' },
+                    { nombre: 'Paracetamol', color: 'Rojo', cantidad: '0.5', dia: '', franja: '' }
                 ] },
-            { nombre: 'Paciente2', pastillas: [{ nombre: '', color: '', cantidad: '', dia: '', franja: '' }] },
+            { nombre: 'Paciente2', pastillas: [
+                    { nombre: 'Omeprazol', color: 'Verde', cantidad: '1', dia: '', franja: '' },
+                    { nombre: 'Paracetamol', color: 'Rojo', cantidad: '0.5', dia: '', franja: '' }
+                ] }
         ];
     }
     pacientesService.prototype.getPacientes = function () {
@@ -477,11 +490,12 @@ var PillsListPage = /** @class */ (function () {
     };
     PillsListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-pills-list',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/pills-list/pills-list.html"*/'<!--\n  Generated template for the PillsListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n      <ion-buttons left>\n          <button ion-button icon-only (click)="goBack(item)">\n              <ion-icon name="arrow-back"></ion-icon>\n          </button>\n      </ion-buttons>\n    <ion-title>{{item.nombre}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content >\n  <div class="pacientes" *ngFor="let i of item.pastillas">\n      <div class="item">\n          <div class="nombre">\n            <p>{{i.nombre}}, {{i.color}}, {{i.cantidad}}</p>  \n          </div>\n          <p class="trash" (click)="deletePastilla(item,i)"><ion-icon id="trash" name="md-trash"></ion-icon></p>\n        </div>\n  </div>  \n    <ion-fab right bottom>\n       <ion-icon name="md-add-circle" (click)="goToAddPage(item)"></ion-icon>\n    </ion-fab>\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/pills-list/pills-list.html"*/,
+            selector: 'page-pills-list',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/pills-list/pills-list.html"*/'<!--\n  Generated template for the PillsListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n      <ion-buttons left>\n          <button ion-button icon-only (click)="goBack(item)">\n              <ion-icon name="arrow-back"></ion-icon>\n          </button>\n      </ion-buttons>\n    <ion-title>{{item.nombre}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content >\n  <div class="pacientes" *ngFor="let i of item.pastillas">\n      <div class="item">\n          <div class="nombre">\n            <p>{{i.nombre}}, {{i.color}}, {{i.cantidad}}, {{i.dia}}, {{i.franja}}</p>  \n          </div>\n          <p class="trash" (click)="deletePastilla(item,i)"><ion-icon id="trash" name="md-trash"></ion-icon></p>\n        </div>\n  </div>  \n    <ion-fab right bottom>\n       <ion-icon name="md-add-circle" (click)="goToAddPage(item)"></ion-icon>\n    </ion-fab>\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/pills-list/pills-list.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */]) === "function" && _c || Object])
     ], PillsListPage);
     return PillsListPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=pills-list.js.map

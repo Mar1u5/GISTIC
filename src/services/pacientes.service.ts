@@ -5,10 +5,13 @@ export class pacientesService{
     //pacientes = ["paciente 1", "paciente 2", "paciente 3","paciente 4","paciente 5","paciente 6","paciente 7","paciente 8","paciente 9", "paciente 10"];
     pacientes = [
         {nombre: 'Paciente1', pastillas:[ 
-            {nombre:'Omeprazol', color:'Verde', cantidad:'1', dia:'Lunes', franja:'mañana'},
-            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia:'Martes', franja:'mañana'}
+            {nombre:'Omeprazol', color:'Verde', cantidad:'1', dia: '', franja:'' },
+            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia: '', franja:'' }
         ] },
-        {nombre: 'Paciente2', pastillas:[ {nombre:'', color:'', cantidad:'', dia:'', franja:''}] },
+        {nombre: 'Paciente2', pastillas:[ 
+            {nombre:'Omeprazol', color:'Verde', cantidad:'1', dia: '', franja:'' },
+            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia: '', franja:'' }
+        ] }
     ];
     
     
@@ -16,7 +19,7 @@ export class pacientesService{
         return this.pacientes;
     }
     public addPaciente(paciente){
-        this.pacientes.push({nombre: paciente, pastillas:[ {nombre:'', color:'', cantidad:'', dia:'', franja:''}] });
+        this.pacientes.push({nombre: paciente, pastillas:[ {nombre:'', color:'', cantidad:'', dia: '', franja:'' }]});
     }
     public deletePaciente(paciente){
         for(let i=0; i < this.pacientes.length; i++){

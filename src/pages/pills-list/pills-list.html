@@ -21,7 +21,7 @@
   <div class="pacientes" *ngFor="let i of item.pastillas">
       <div class="item">
           <div class="nombre">
-            <p>{{i.nombre}}, {{i.color}}, {{i.cantidad}}</p>  
+            <p>{{i.nombre}}, {{i.color}}, {{i.cantidad}}, {{i.dia}}, {{i.franja}}</p>  
           </div>
           <p class="trash" (click)="deletePastilla(item,i)"><ion-icon id="trash" name="md-trash"></ion-icon></p>
         </div>

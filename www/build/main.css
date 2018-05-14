@@ -25678,6 +25678,10 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-add-pastilla .dia {
+  margin-top: 30px;
+}
+
 page-anadir-paciente .scroll-content {
   padding: 0px 25px;
 }

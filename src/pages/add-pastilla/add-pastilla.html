@@ -21,10 +21,10 @@
             <ion-label floating>Nombre Pastilla</ion-label>
             <ion-input id="nombre" type="text" [(ngModel)]=pastilla></ion-input>
           </ion-item>
-          <!--<ion-label>Color</ion-label>
-              <ion-select [(ngModel)]="color" multiple="false">
-                <ion-option>Rojo</ion-option>
-                <ion-option>Verde</ion-option>
+          <!--<ion-label>Dia</ion-label>
+              <ion-select [(ngModel)]="dia" multiple="True">
+                <ion-option>Lunes</ion-option>
+                <ion-option>Martes</ion-option>
                 <ion-option>Azul</ion-option>
                 <ion-option>Naranja</ion-option>
                 <ion-option>Amarillo</ion-option>
@@ -36,7 +36,26 @@
           <ion-item>
               <ion-label floating>Cantidad</ion-label>
               <ion-input id="cantidad" type="number" [(ngModel)]=cantidad></ion-input>
-            </ion-item>
+          </ion-item>
+          <ion-item class="dia">
+              <ion-label>Día</ion-label>
+              <ion-select [(ngModel)]="dia" multiple="True">
+                  <ion-option>Lunes</ion-option>
+                  <ion-option>Martes</ion-option>
+                  <ion-option>Miercoles</ion-option>
+                  <ion-option>Jueves</ion-option>
+                  <ion-option>Viernes</ion-option>
+                  <ion-option>Sabado</ion-option>
+                </ion-select>
+           </ion-item>
+           <ion-item class="dia">
+              <ion-label>Franja horaria</ion-label>
+              <ion-select [(ngModel)]="franja" multiple="True">
+                  <ion-option>Desayuno</ion-option>
+                  <ion-option>Comida</ion-option>
+                  <ion-option>Cena</ion-option>
+                </ion-select>
+           </ion-item>
         
         </ion-list>
         <button ion-button block (click)="addPastilla(item)">Guardar</button>
