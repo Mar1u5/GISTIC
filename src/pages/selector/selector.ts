@@ -30,7 +30,7 @@ export class SelectorPage {
     this.navCtrl.setRoot(HomePage);
   }
   nextPage(item){
-    this.navCtrl.push(PillsListPage, {item});
+    this.navCtrl.setRoot(PillsListPage, {item});
   }
 
 }

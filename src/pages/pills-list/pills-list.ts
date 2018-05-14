@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { pacientesService } from '../../services/pacientes.service';
 import { AddPastillaPage } from '../add-pastilla/add-pastilla';
+import { SelectorPage } from '../selector/selector';
 
 /**
  * Generated class for the PillsListPage page.
@@ -31,6 +32,9 @@ export class PillsListPage {
 
   goToAddPage(item){
     this.navCtrl.push(AddPastillaPage, {item});
+  }
+  goBack(item){
+    this.navCtrl.setRoot(SelectorPage, {item});
   }
 
 }
