@@ -1,14 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 275:
+/***/ 710:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnadirPacientePageModule", function() { return AnadirPacientePageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__anadir_paciente__ = __webpack_require__(104);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiasPageModule", function() { return DiasPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dias__ = __webpack_require__(93);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AnadirPacientePageModule = /** @class */ (function () {
-    function AnadirPacientePageModule() {
+var DiasPageModule = /** @class */ (function () {
+    function DiasPageModule() {
     }
-    AnadirPacientePageModule = __decorate([
+    DiasPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__anadir_paciente__["a" /* AnadirPacientePage */],
+                __WEBPACK_IMPORTED_MODULE_2__dias__["a" /* DiasPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__anadir_paciente__["a" /* AnadirPacientePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__dias__["a" /* DiasPage */]),
             ],
         })
-    ], AnadirPacientePageModule);
-    return AnadirPacientePageModule;
+    ], DiasPageModule);
+    return DiasPageModule;
 }());
 
-//# sourceMappingURL=anadir-paciente.module.js.map
+//# sourceMappingURL=dias.module.js.map
 
 /***/ })
 

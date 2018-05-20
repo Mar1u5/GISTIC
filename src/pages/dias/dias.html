@@ -1,0 +1,29 @@
+<!--
+  Generated template for the DiasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <ion-buttons left>
+          <button ion-button icon-only (click)="goBack(item)">
+              <ion-icon name="arrow-back"></ion-icon>
+          </button>
+      </ion-buttons>
+    <ion-title>{{item.nombre}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <button class="dias" ion-button block color="secondary" (click)="comidas(item,'Lunes')">Lunes</button>
+    <button class="dias" ion-button block color="secondary" (click)="comidas(item,'Martes')">Martes</button>
+    <button class="dias" ion-button block color="secondary" (click)="comidas(item,'Miercoles')">Miercoles</button>
+    <button class="dias" ion-button block color="secondary" (click)="comidas(item,'Jueves')">Jueves</button>
+    <button class="dias" ion-button block color="secondary" (click)="comidas(item,'Viernes')">Viernes</button>
+    <button class="dias" ion-button block color="secondary" (click)="comidas(item,'Sabado')">Sábado</button>
+    <button class="dias" ion-button block color="secondary" (click)="comidas(item,'Domingo')">Domingo</button>
+</ion-content>

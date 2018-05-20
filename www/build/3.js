@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 274:
+/***/ 709:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddPastillaPageModule", function() { return AddPastillaPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_pastilla__ = __webpack_require__(103);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComidasPageModule", function() { return ComidasPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__comidas__ = __webpack_require__(161);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AddPastillaPageModule = /** @class */ (function () {
-    function AddPastillaPageModule() {
+var ComidasPageModule = /** @class */ (function () {
+    function ComidasPageModule() {
     }
-    AddPastillaPageModule = __decorate([
+    ComidasPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__add_pastilla__["a" /* AddPastillaPage */],
+                __WEBPACK_IMPORTED_MODULE_2__comidas__["a" /* ComidasPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__add_pastilla__["a" /* AddPastillaPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__comidas__["a" /* ComidasPage */]),
             ],
         })
-    ], AddPastillaPageModule);
-    return AddPastillaPageModule;
+    ], ComidasPageModule);
+    return ComidasPageModule;
 }());
 
-//# sourceMappingURL=add-pastilla.module.js.map
+//# sourceMappingURL=comidas.module.js.map
 
 /***/ })
 

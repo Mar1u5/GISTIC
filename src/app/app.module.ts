@@ -11,7 +11,20 @@ import { pacientesService } from '../services/pacientes.service';
 import { AnadirPacientePage } from '../pages/anadir-paciente/anadir-paciente';
 import { PillsListPage } from '../pages/pills-list/pills-list';
 import { AddPastillaPage } from '../pages/add-pastilla/add-pastilla';
+import { DiasPage } from '../pages/dias/dias';
+import { ComidasPage } from '../pages/comidas/comidas';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyAdoBWhc24E1FkRq1WNh88c-OfB9R9vY-I",
+  authDomain: "pillnow-670f8.firebaseapp.com",
+  databaseURL: "https://pillnow-670f8.firebaseio.com",
+  storageBucket: "pillnow-670f8.appspot.com",
+  messagingSenderId: "777992716325"
+}
 
 @NgModule({
   declarations: [
@@ -20,11 +33,16 @@ import { AddPastillaPage } from '../pages/add-pastilla/add-pastilla';
     SelectorPage,
     AnadirPacientePage,
     PillsListPage,
-    AddPastillaPage
+    AddPastillaPage,
+    DiasPage,
+    ComidasPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,7 +51,9 @@ import { AddPastillaPage } from '../pages/add-pastilla/add-pastilla';
     SelectorPage,
     AnadirPacientePage,
     PillsListPage,
-    AddPastillaPage
+    AddPastillaPage,
+    DiasPage,
+    ComidasPage
   ],
   providers: [
     StatusBar,

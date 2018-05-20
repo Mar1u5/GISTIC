@@ -25686,6 +25686,15 @@ page-anadir-paciente .scroll-content {
   padding: 0px 25px;
 }
 
+page-comidas .carta {
+  background-color: lightskyblue;
+}
+
+page-dias .dias {
+  margin: 7% 0px;
+  padding: 8% 0px;
+}
+
 page-home ion-fab {
   font-size: 35px;
   color: red;

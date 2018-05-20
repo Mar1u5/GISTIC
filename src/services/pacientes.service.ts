@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 export class pacientesService{
+
+    constructor(/*public afDB: AngularFireDatabase*/){}
     //pacientes = ["paciente 1", "paciente 2", "paciente 3","paciente 4","paciente 5","paciente 6","paciente 7","paciente 8","paciente 9", "paciente 10"];
     pacientes = [
         {nombre: 'Paciente1', pastillas:[ 
-            {nombre:'Omeprazol', color:'Verde', cantidad:'1', dia: '', franja:'' },
-            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia: '', franja:'' }
+            {nombre:'Omeprazol', color:'Verde', cantidad:'1', dia: 'Lunes', franja:'Desayuno' },
+            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia: 'martes', franja:'Comida' }
         ] },
         {nombre: 'Paciente2', pastillas:[ 
-            {nombre:'Omeprazol', color:'Verde', cantidad:'1', dia: '', franja:'' },
-            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia: '', franja:'' }
+            {nombre:'Omeprazol', color:'Verde', cantidad:'1', dia: 'miercoles', franja:'' },
+            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia: 'jueves', franja:'' }
         ] }
     ];
     
@@ -19,6 +22,7 @@ export class pacientesService{
         return this.pacientes;
     }
     public addPaciente(paciente){
+         //this.afDB.database.ref('pacientes/'+paciente.nombre).set(paciente);
         this.pacientes.push({nombre: paciente, pastillas:[ {nombre:'', color:'', cantidad:'', dia: '', franja:'' }]});
     }
     public deletePaciente(paciente){

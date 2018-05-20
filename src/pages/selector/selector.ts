@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { PillsListPage } from '../pills-list/pills-list';
+import { DiasPage } from '../dias/dias';
 
 /**
  * Generated class for the SelectorPage page.
@@ -31,6 +32,9 @@ export class SelectorPage {
   }
   nextPage(item){
     this.navCtrl.setRoot(PillsListPage, {item});
+  }
+  nextDias(item){
+    this.navCtrl.setRoot(DiasPage, {item});
   }
 
 }
