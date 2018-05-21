@@ -9,11 +9,11 @@ export class pacientesService{
     pacientes = [
         {nombre: 'Paciente1', pastillas:[ 
             {nombre:'Omeprazol', color:'Verde', cantidad:'1', dia: 'Lunes', franja:'Desayuno', tomado:false },
-            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia: 'martes', franja:'Comida', tomado:false }
+            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia: 'Martes', franja:'Comida', tomado:false }
         ] },
         {nombre: 'Paciente2', pastillas:[ 
-            {nombre:'Omeprazol', color:'Verde', cantidad:'1', dia: 'miercoles', franja:'', tomado:false },
-            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia: 'jueves', franja:'', tomado:false }
+            {nombre:'Omeprazol', color:'Verde', cantidad:'1', dia: 'Miercoles', franja:'', tomado:false },
+            {nombre:'Paracetamol', color:'Rojo', cantidad:'0.5', dia: 'Jueves', franja:'', tomado:false }
         ] }
     ];
     

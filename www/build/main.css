@@ -25690,6 +25690,17 @@ page-comidas .carta {
   background-color: lightskyblue;
 }
 
+page-comidas .tomar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 page-dias .dias {
   margin: 23px 0px;
   padding: 24px 0px;

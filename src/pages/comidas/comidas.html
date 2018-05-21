@@ -31,10 +31,16 @@
                       {{i.nombre}}
                     </ion-item>-->
                     <ion-item *ngIf="i.tomado" (click)="changeColor(i);" [style.background-color]="'#17e61785'">
-                        {{i.nombre}}
+                        <div class="tomar">
+                            <div class="nombre">{{i.nombre}}</div>
+                            <div class="cantidad">Cant: {{i.cantidad}}</div>
+                          </div>  
                     </ion-item>
                     <ion-item *ngIf="!i.tomado" (click)="changeColor(i);" [style.background-color]="'white'">
-                        {{i.nombre}}
+                        <div class="tomar">
+                            <div class="nombre">{{i.nombre}}</div>
+                            <div class="cantidad">Cant: {{i.cantidad}}</div>
+                          </div> 
                     </ion-item>
               </div>
             </div>
@@ -49,10 +55,16 @@
             <div *ngFor="let i of item.pastillas">
                 <div *ngIf="i.dia == dia && i.franja == 'Comida'">
                     <ion-item *ngIf="i.tomado" (click)="changeColor(i);" [style.background-color]="'#17e61785'">
-                        {{i.nombre}}
+                        <div class="tomar">
+                            <div class="nombre">{{i.nombre}}</div>
+                            <div class="cantidad">Cant: {{i.cantidad}}</div>
+                          </div> 
                     </ion-item>
                     <ion-item *ngIf="!i.tomado" (click)="changeColor(i);" [style.background-color]="'white'">
-                        {{i.nombre}}
+                        <div class="tomar">
+                            <div class="nombre">{{i.nombre}}</div>
+                            <div class="cantidad">Cant: {{i.cantidad}}</div>
+                          </div> 
                     </ion-item>
                 </div>
               </div>
@@ -67,10 +79,16 @@
               <div *ngFor="let i of item.pastillas">
                   <div *ngIf="i.dia == dia && i.franja == 'Cena'">
                       <ion-item *ngIf="i.tomado" (click)="changeColor(i);" [style.background-color]="'#17e61785'">
-                          {{i.nombre}}
+                          <div class="tomar">
+                            <div class="nombre">{{i.nombre}}</div>
+                            <div class="cantidad">Cant: {{i.cantidad}}</div>
+                          </div> 
                       </ion-item>
                       <ion-item *ngIf="!i.tomado" (click)="changeColor(i);" [style.background-color]="'white'">
-                          {{i.nombre}}
+                          <div class="tomar">
+                            <div class="nombre">{{i.nombre}}</div>
+                            <div class="cantidad">Cant: {{i.cantidad}}</div>
+                          </div> 
                       </ion-item>
                   </div>
                 </div>
