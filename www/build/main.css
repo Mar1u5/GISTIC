@@ -25691,8 +25691,8 @@ page-comidas .carta {
 }
 
 page-dias .dias {
-  margin: 7% 0px;
-  padding: 8% 0px;
+  margin: 23px 0px;
+  padding: 24px 0px;
 }
 
 page-home ion-fab {
@@ -25821,12 +25821,12 @@ page-selector ion-content {
 
 page-selector .button {
   width: 75%;
-  height: 45%;
-  margin-bottom: 6%;
+  height: 250px;
 }
 
 page-selector #boton1 {
   background-color: green;
+  margin-bottom: 6%;
 }
 
 page-selector #boton2 {
