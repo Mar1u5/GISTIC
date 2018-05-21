@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DiasPage } from '../dias/dias';
+import { pacientesService } from '../../services/pacientes.service';
 
 /**
  * Generated class for the ComidasPage page.
@@ -19,7 +20,7 @@ item;
 dia:string;
 buttonColor: string = '#fff';
 bool = true;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public PacientesService : pacientesService) {
     this.item = navParams.get('item');
     this.dia = navParams.get('dia');
   }
@@ -30,13 +31,7 @@ bool = true;
   goBack(item){
     this.navCtrl.setRoot(DiasPage, {item});
   }
-  changeColor(){
-    if(this.bool==true){
-      this.buttonColor = '#32db647d';
-      this.bool=false;
-    }else{
-      this.buttonColor = '#fff';
-      this.bool=true;
-    }
+  changeColor(pastilla){
+    this.PacientesService.tomado(this.item, pastilla);
   }
 }

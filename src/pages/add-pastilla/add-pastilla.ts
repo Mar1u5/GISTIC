@@ -38,7 +38,7 @@ splitted = [];
       for(let i of this.dia){
         for(let j of this.franja){
           console.log(i);
-          this.pill = {nombre: this.pastilla, color: this.color, cantidad: this.cantidad, dia: i, franja: j}; 
+          this.pill = {nombre: this.pastilla, color: this.color, cantidad: this.cantidad, dia: i, franja: j, tomado:false}; 
           this.PacientesService.addPastillas(item, this.pill);
         }
       }

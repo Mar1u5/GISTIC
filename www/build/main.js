@@ -7,7 +7,7 @@ webpackJsonp([6],{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPastillaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pills_list_pills_list__ = __webpack_require__(92);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -46,7 +46,7 @@ var AddPastillaPage = /** @class */ (function () {
             for (var _b = 0, _c = this.franja; _b < _c.length; _b++) {
                 var j = _c[_b];
                 console.log(i);
-                this.pill = { nombre: this.pastilla, color: this.color, cantidad: this.cantidad, dia: i, franja: j };
+                this.pill = { nombre: this.pastilla, color: this.color, cantidad: this.cantidad, dia: i, franja: j, tomado: false };
                 this.PacientesService.addPastillas(item, this.pill);
             }
         }
@@ -72,7 +72,7 @@ var AddPastillaPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnadirPacientePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(79);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -127,6 +127,7 @@ var AnadirPacientePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dias_dias__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_pacientes_service__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -139,6 +140,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the ComidasPage page.
  *
@@ -146,9 +148,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var ComidasPage = /** @class */ (function () {
-    function ComidasPage(navCtrl, navParams) {
+    function ComidasPage(navCtrl, navParams, PacientesService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.PacientesService = PacientesService;
         this.buttonColor = '#fff';
         this.bool = true;
         this.item = navParams.get('item');
@@ -160,21 +163,14 @@ var ComidasPage = /** @class */ (function () {
     ComidasPage.prototype.goBack = function (item) {
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__dias_dias__["a" /* DiasPage */], { item: item });
     };
-    ComidasPage.prototype.changeColor = function () {
-        if (this.bool == true) {
-            this.buttonColor = '#32db647d';
-            this.bool = false;
-        }
-        else {
-            this.buttonColor = '#fff';
-            this.bool = true;
-        }
+    ComidasPage.prototype.changeColor = function (pastilla) {
+        this.PacientesService.tomado(this.item, pastilla);
     };
     ComidasPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-comidas',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/comidas/comidas.html"*/'<!--\n  Generated template for the ComidasPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n      <ion-buttons left>\n          <button ion-button icon-only (click)="goBack(item)">\n              <ion-icon name="arrow-back"></ion-icon>\n          </button>\n      </ion-buttons>\n    <ion-title>{{dia}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n    <ion-card>\n        <ion-card-header class="carta">\n          Desayuno \n       </ion-card-header>\n      \n        <ion-list>      \n          <div *ngFor="let i of item.pastillas">\n              <div *ngIf="i.dia == dia && i.franja == \'Desayuno\'">\n                  <ion-item (click)="changeColor();" [ngStyle]="{\'background-color\': buttonColor}">\n                      {{i.nombre}}\n                    </ion-item>\n              </div>\n            </div>\n        </ion-list>\n      </ion-card>\n      <ion-card>\n          <ion-card-header class="carta">\n            Comida \n         </ion-card-header>\n        \n          <ion-list>      \n            <div *ngFor="let i of item.pastillas">\n                <div *ngIf="i.dia == dia && i.franja == \'Comida\'">\n                    <ion-item (click)="changeColor();" [ngStyle]="{\'background-color\': buttonColor}">\n                        {{i.nombre}}\n                      </ion-item>\n                </div>\n              </div>\n          </ion-list>\n        </ion-card>\n        <ion-card>\n            <ion-card-header class="carta">\n              Cena \n           </ion-card-header>\n          \n            <ion-list>      \n              <div *ngFor="let i of item.pastillas">\n                  <div *ngIf="i.dia == dia && i.franja == \'Cena\'">\n                      <ion-item>\n                          {{i.nombre}}\n                        </ion-item>\n                  </div>\n                </div>\n            </ion-list>\n          </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/comidas/comidas.html"*/,
+            selector: 'page-comidas',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/comidas/comidas.html"*/'<!--\n  Generated template for the ComidasPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n      <ion-buttons left>\n          <button ion-button icon-only (click)="goBack(item)">\n              <ion-icon name="arrow-back"></ion-icon>\n          </button>\n      </ion-buttons>\n    <ion-title>{{dia}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n    <ion-card>\n        <ion-card-header class="carta">\n          Desayuno \n       </ion-card-header>\n      \n        <ion-list>      \n          <div *ngFor="let i of item.pastillas">\n              <div *ngIf="i.dia == dia && i.franja == \'Desayuno\'">\n                  <!--<ion-item (click)="changeColor(i);" [style.background-color]="i.tomado ? \'green\' : \'danger\'">\n                      {{i.nombre}}\n                    </ion-item>-->\n                    <ion-item *ngIf="i.tomado" (click)="changeColor(i);" [style.background-color]="\'#17e61785\'">\n                        {{i.nombre}}\n                    </ion-item>\n                    <ion-item *ngIf="!i.tomado" (click)="changeColor(i);" [style.background-color]="\'white\'">\n                        {{i.nombre}}\n                    </ion-item>\n              </div>\n            </div>\n        </ion-list>\n      </ion-card>\n      <ion-card>\n          <ion-card-header class="carta">\n            Comida \n         </ion-card-header>\n        \n          <ion-list>      \n            <div *ngFor="let i of item.pastillas">\n                <div *ngIf="i.dia == dia && i.franja == \'Comida\'">\n                    <ion-item *ngIf="i.tomado" (click)="changeColor(i);" [style.background-color]="\'#17e61785\'">\n                        {{i.nombre}}\n                    </ion-item>\n                    <ion-item *ngIf="!i.tomado" (click)="changeColor(i);" [style.background-color]="\'white\'">\n                        {{i.nombre}}\n                    </ion-item>\n                </div>\n              </div>\n          </ion-list>\n        </ion-card>\n        <ion-card>\n            <ion-card-header class="carta">\n              Cena \n           </ion-card-header>\n          \n            <ion-list>      \n              <div *ngFor="let i of item.pastillas">\n                  <div *ngIf="i.dia == dia && i.franja == \'Cena\'">\n                      <ion-item *ngIf="i.tomado" (click)="changeColor(i);" [style.background-color]="\'#17e61785\'">\n                          {{i.nombre}}\n                      </ion-item>\n                      <ion-item *ngIf="!i.tomado" (click)="changeColor(i);" [style.background-color]="\'white\'">\n                          {{i.nombre}}\n                      </ion-item>\n                  </div>\n                </div>\n            </ion-list>\n          </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/comidas/comidas.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__services_pacientes_service__["a" /* pacientesService */]])
     ], ComidasPage);
     return ComidasPage;
 }());
@@ -273,7 +269,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(412);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_selector_selector__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_pacientes_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_pacientes_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_anadir_paciente_anadir_paciente__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_pills_list_pills_list__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_add_pastilla_add_pastilla__ = __webpack_require__(159);
@@ -415,7 +411,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 57:
+/***/ 45:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -436,12 +432,12 @@ var pacientesService = /** @class */ (function () {
         //pacientes = ["paciente 1", "paciente 2", "paciente 3","paciente 4","paciente 5","paciente 6","paciente 7","paciente 8","paciente 9", "paciente 10"];
         this.pacientes = [
             { nombre: 'Paciente1', pastillas: [
-                    { nombre: 'Omeprazol', color: 'Verde', cantidad: '1', dia: 'Lunes', franja: 'Desayuno' },
-                    { nombre: 'Paracetamol', color: 'Rojo', cantidad: '0.5', dia: 'martes', franja: 'Comida' }
+                    { nombre: 'Omeprazol', color: 'Verde', cantidad: '1', dia: 'Lunes', franja: 'Desayuno', tomado: false },
+                    { nombre: 'Paracetamol', color: 'Rojo', cantidad: '0.5', dia: 'martes', franja: 'Comida', tomado: false }
                 ] },
             { nombre: 'Paciente2', pastillas: [
-                    { nombre: 'Omeprazol', color: 'Verde', cantidad: '1', dia: 'miercoles', franja: '' },
-                    { nombre: 'Paracetamol', color: 'Rojo', cantidad: '0.5', dia: 'jueves', franja: '' }
+                    { nombre: 'Omeprazol', color: 'Verde', cantidad: '1', dia: 'miercoles', franja: '', tomado: false },
+                    { nombre: 'Paracetamol', color: 'Rojo', cantidad: '0.5', dia: 'jueves', franja: '', tomado: false }
                 ] }
         ];
     }
@@ -450,7 +446,7 @@ var pacientesService = /** @class */ (function () {
     };
     pacientesService.prototype.addPaciente = function (paciente) {
         //this.afDB.database.ref('pacientes/'+paciente.nombre).set(paciente);
-        this.pacientes.push({ nombre: paciente, pastillas: [{ nombre: '', color: '', cantidad: '', dia: '', franja: '' }] });
+        this.pacientes.push({ nombre: paciente, pastillas: [{ nombre: '', color: '', cantidad: '', dia: '', franja: '', tomado: false }] });
     };
     pacientesService.prototype.deletePaciente = function (paciente) {
         for (var i = 0; i < this.pacientes.length; i++) {
@@ -472,6 +468,22 @@ var pacientesService = /** @class */ (function () {
                 for (var j = 0; j < this.pacientes[i].pastillas.length; j++) {
                     if (this.pacientes[i].pastillas[j].nombre == pastilla.nombre) {
                         this.pacientes[i].pastillas.splice(j, 1);
+                    }
+                }
+            }
+        }
+    };
+    pacientesService.prototype.tomado = function (paciente, pastilla) {
+        for (var i = 0; i < this.pacientes.length; i++) {
+            if (this.pacientes[i].nombre == paciente.nombre) {
+                for (var j = 0; j < this.pacientes[i].pastillas.length; j++) {
+                    if (this.pacientes[i].pastillas[j].nombre == pastilla.nombre && this.pacientes[i].pastillas[j].dia == pastilla.dia && this.pacientes[i].pastillas[j].franja == pastilla.franja) {
+                        if (this.pacientes[i].pastillas[j].tomado) {
+                            this.pacientes[i].pastillas[j].tomado = false;
+                        }
+                        else {
+                            this.pacientes[i].pastillas[j].tomado = true;
+                        }
                     }
                 }
             }
@@ -557,7 +569,7 @@ var SelectorPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selector_selector__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_pacientes_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_pacientes_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__anadir_paciente_anadir_paciente__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -610,7 +622,7 @@ var HomePage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PillsListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__add_pastilla_add_pastilla__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__selector_selector__ = __webpack_require__(68);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

@@ -27,8 +27,14 @@
         <ion-list>      
           <div *ngFor="let i of item.pastillas">
               <div *ngIf="i.dia == dia && i.franja == 'Desayuno'">
-                  <ion-item (click)="changeColor();" [ngStyle]="{'background-color': buttonColor}">
+                  <!--<ion-item (click)="changeColor(i);" [style.background-color]="i.tomado ? 'green' : 'danger'">
                       {{i.nombre}}
+                    </ion-item>-->
+                    <ion-item *ngIf="i.tomado" (click)="changeColor(i);" [style.background-color]="'#17e61785'">
+                        {{i.nombre}}
+                    </ion-item>
+                    <ion-item *ngIf="!i.tomado" (click)="changeColor(i);" [style.background-color]="'white'">
+                        {{i.nombre}}
                     </ion-item>
               </div>
             </div>
@@ -42,9 +48,12 @@
           <ion-list>      
             <div *ngFor="let i of item.pastillas">
                 <div *ngIf="i.dia == dia && i.franja == 'Comida'">
-                    <ion-item (click)="changeColor();" [ngStyle]="{'background-color': buttonColor}">
+                    <ion-item *ngIf="i.tomado" (click)="changeColor(i);" [style.background-color]="'#17e61785'">
                         {{i.nombre}}
-                      </ion-item>
+                    </ion-item>
+                    <ion-item *ngIf="!i.tomado" (click)="changeColor(i);" [style.background-color]="'white'">
+                        {{i.nombre}}
+                    </ion-item>
                 </div>
               </div>
           </ion-list>
@@ -57,9 +66,12 @@
             <ion-list>      
               <div *ngFor="let i of item.pastillas">
                   <div *ngIf="i.dia == dia && i.franja == 'Cena'">
-                      <ion-item>
+                      <ion-item *ngIf="i.tomado" (click)="changeColor(i);" [style.background-color]="'#17e61785'">
                           {{i.nombre}}
-                        </ion-item>
+                      </ion-item>
+                      <ion-item *ngIf="!i.tomado" (click)="changeColor(i);" [style.background-color]="'white'">
+                          {{i.nombre}}
+                      </ion-item>
                   </div>
                 </div>
             </ion-list>
