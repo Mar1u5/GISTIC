@@ -8,6 +8,9 @@
 
   <ion-navbar>
     <ion-title>addPastilla</ion-title>
+    <ion-buttons right>
+        <img src="assets/imgs/pillnow.png" alt="pillnow">
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,19 +19,12 @@
 <ion-content>
     <div>
         <ion-list>
-      
-          <ion-item>
-            <ion-label floating>Nombre Pastilla</ion-label>
-            <ion-input id="nombre" type="text" [(ngModel)]=pastilla></ion-input>
-          </ion-item>
-          <!--<ion-label>Dia</ion-label>
-              <ion-select [(ngModel)]="dia" multiple="True">
-                <ion-option>Lunes</ion-option>
-                <ion-option>Martes</ion-option>
-                <ion-option>Azul</ion-option>
-                <ion-option>Naranja</ion-option>
-                <ion-option>Amarillo</ion-option>
-              </ion-select>-->
+          <ion-item class="dia">
+            <ion-label>Pastilla</ion-label>
+            <ion-select [(ngModel)]="pasti" multiple="false">
+                <ion-option *ngFor="let pastilla of pastillas">{{pastilla.nombre}}</ion-option>
+              </ion-select>
+         </ion-item>
           <ion-item>
               <ion-label floating>Color</ion-label>
               <ion-input id="color" type="text" [(ngModel)]=color></ion-input>

@@ -31,7 +31,7 @@ bool = true;
   goBack(item){
     this.navCtrl.setRoot(DiasPage, {item});
   }
-  changeColor(pastilla){
-    this.PacientesService.tomado(this.item, pastilla);
+  changeColor(pastilla, dia, franja){
+    this.PacientesService.tomado(this.item, pastilla, dia, franja);
   }
 }

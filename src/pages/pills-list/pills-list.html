@@ -13,6 +13,9 @@
           </button>
       </ion-buttons>
     <ion-title>{{item.nombre}}</ion-title>
+    <ion-buttons right>
+        <img src="assets/imgs/pillnow.png" alt="pillnow" height="30">
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -21,11 +24,12 @@
   <div class="pacientes" *ngFor="let i of item.pastillas">
       <div class="item">
           <div class="nombre">
-            <p>{{i.nombre}}, {{i.color}}, {{i.cantidad}}, {{i.dia}}, {{i.franja}}</p>  
+            <p>{{i.nombre_p}}, {{i.color}}, {{i.cantidad}}</p>
+            <p><span *ngFor="let j of i.dia">{{j.nombre_d}} </span></p>  
           </div>
           <p class="trash" (click)="deletePastilla(item,i)"><ion-icon id="trash" name="md-trash"></ion-icon></p>
         </div>
-  </div>  
+  </div> 
     <ion-fab right bottom>
        <ion-icon name="md-add-circle" (click)="goToAddPage(item)"></ion-icon>
     </ion-fab>

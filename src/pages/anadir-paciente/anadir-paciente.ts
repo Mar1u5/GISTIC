@@ -25,8 +25,8 @@ paciente;
     console.log('ionViewDidLoad AnadirPacientePage');
   }
 
-  addNote(){
-    this.PacientesService.addPaciente(this.paciente);
+  addPaciente(){
+    this.PacientesService.addPaciente({id: Date.now() ,nombre: this.paciente, pastillas:[]});
     this.navCtrl.setRoot(HomePage);
   }
   

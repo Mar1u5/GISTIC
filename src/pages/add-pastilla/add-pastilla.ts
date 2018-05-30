@@ -18,31 +18,37 @@ import { PillsListPage } from '../pills-list/pills-list';
   templateUrl: 'add-pastilla.html',
 })
 export class AddPastillaPage {
-pastilla;
+pastillas;
 color;
 cantidad;
 item;
 pill;
 dia;
 franja;
+toma = [];
+pasti;
 splitted = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public PacientesService : pacientesService) {
     this.item = navParams.get('item');
+    this.pastillas = PacientesService.getPastillas();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPastillaPage');
   }
   addPastilla(item){
-     console.log(this.dia);
-      for(let i of this.dia){
-        for(let j of this.franja){
-          console.log(i);
-          this.pill = {nombre: this.pastilla, color: this.color, cantidad: this.cantidad, dia: i, franja: j, tomado:false}; 
-          this.PacientesService.addPastillas(item, this.pill);
-        }
+    
+      
+      let d = []
+    for(let i of this.dia){
+      let t = [];
+      for(let j of this.franja){
+        t.push({nombre_f: j, tomado: false});
       }
-      this.navCtrl.setRoot(PillsListPage, {item});   
+      d.push({nombre_d: i, franja: t});
+    }
+    this.PacientesService.addPastillas(item, {nombre_p: this.pasti, color: this.color, cantidad: this.cantidad, dia: d});
+    this.navCtrl.setRoot(PillsListPage, {item});   
       
       
 

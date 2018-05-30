@@ -9,8 +9,13 @@ import { AnadirPacientePage } from '../anadir-paciente/anadir-paciente';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  pacientes = [];
+  pacientes: any;
+
   constructor(public navCtrl: NavController, public PacientesService : pacientesService) {
+    /*this.PacientesService.getPacientes().subscribe(pacientes =>{
+      this.pacientes = pacientes;
+    })*/
+
     this.pacientes = PacientesService.getPacientes();
   }
 

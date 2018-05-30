@@ -18,8 +18,10 @@ import { SelectorPage } from '../selector/selector';
 })
 export class PillsListPage {
   item:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public PacientesService : pacientesService) {
     this.item = navParams.get('item');
+   
   }
 
   ionViewDidLoad() {

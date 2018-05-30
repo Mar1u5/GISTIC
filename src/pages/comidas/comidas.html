@@ -13,7 +13,11 @@
           </button>
       </ion-buttons>
     <ion-title>{{dia}}</ion-title>
+    <ion-buttons right>
+            <img src="assets/imgs/pillnow.png" alt="pillnow" height="30">
+        </ion-buttons>
   </ion-navbar>
+  
 
 </ion-header>
 
@@ -26,18 +30,66 @@
       
         <ion-list>      
           <div *ngFor="let i of item.pastillas">
-              <div *ngIf="i.dia == dia && i.franja == 'Desayuno'">
-                  <ion-item (click)="changeColor(i);" [style.background-color]="i.tomado ? '#17e61785' : 'white'">
+              <div *ngFor="let j of i.dia">
+                    <div *ngFor="let k of j.franja">
+
+              <div *ngIf="j.nombre_d == dia && k.nombre_f == 'Desayuno'">
+                  <ion-item (click)="changeColor(i,j,k);" [style.background-color]="k.tomado ? '#17e61785' : 'white'">
                       <div class="tomar">
-                          <div class="nombre">{{i.nombre}}</div>
+                          <div class="nombre">{{i.nombre_p}}</div>
                           <div class="cantidad">Cant: {{i.cantidad}}</div>
                         </div> 
                     </ion-item>
               </div>
             </div>
+            </div></div>
         </ion-list>
       </ion-card>
       <ion-card>
+            <ion-card-header class="carta">
+              Comida 
+           </ion-card-header>
+          
+            <ion-list>      
+              <div *ngFor="let i of item.pastillas">
+                  <div *ngFor="let j of i.dia">
+                        <div *ngFor="let k of j.franja">
+    
+                  <div *ngIf="j.nombre_d == dia && k.nombre_f == 'Comida'">
+                      <ion-item (click)="changeColor(i,j,k);" [style.background-color]="k.tomado ? '#17e61785' : 'white'">
+                          <div class="tomar">
+                              <div class="nombre">{{i.nombre_p}}</div>
+                              <div class="cantidad">Cant: {{i.cantidad}}</div>
+                            </div> 
+                        </ion-item>
+                  </div>
+                </div>
+                </div></div>
+            </ion-list>
+          </ion-card>
+          <ion-card>
+                <ion-card-header class="carta">
+                  Cena 
+               </ion-card-header>
+              
+                <ion-list>      
+                  <div *ngFor="let i of item.pastillas">
+                      <div *ngFor="let j of i.dia">
+                            <div *ngFor="let k of j.franja">
+        
+                      <div *ngIf="j.nombre_d == dia && k.nombre_f == 'Cena'">
+                          <ion-item (click)="changeColor(i,j,k);" [style.background-color]="k.tomado ? '#17e61785' : 'white'">
+                              <div class="tomar">
+                                  <div class="nombre">{{i.nombre_p}}</div>
+                                  <div class="cantidad">Cant: {{i.cantidad}}</div>
+                                </div> 
+                            </ion-item>
+                      </div>
+                    </div>
+                    </div></div>
+                </ion-list>
+              </ion-card>
+      <!--<ion-card>
           <ion-card-header class="carta">
             Comida 
          </ion-card-header>
@@ -72,6 +124,6 @@
                   </div>
                 </div>
             </ion-list>
-          </ion-card>
+          </ion-card>-->
 
 </ion-content>
