@@ -34,11 +34,18 @@
                     <div *ngFor="let k of j.franja">
 
               <div *ngIf="j.nombre_d == dia && k.nombre_f == 'Desayuno'">
-                  <ion-item (click)="changeColor(i,j,k);" [style.background-color]="k.tomado ? '#17e61785' : 'white'">
+                  <!--<ion-item (click)="changeColor(i,j,k);" [ngClass]="k.tomado ? 'verd' : 'blanc'">
                       <div class="tomar">
                           <div class="nombre">{{i.nombre_p}}</div>
                           <div class="cantidad">Cant: {{i.cantidad}}</div>
                         </div> 
+                    </ion-item>-->
+                    <ion-item (click)="changeColor(i,j,k);" [ngClass]="k.tomado ? 'verd' : 'blanc'">
+                        <div class="tomar">
+                            <div class="nombre">{{i.nombre_p}}</div>
+                            <div>{{i.color}}</div>
+                            <div class="cantidad">Cant: {{i.cantidad}}</div>
+                    </div> 
                     </ion-item>
               </div>
             </div>
@@ -56,9 +63,10 @@
                         <div *ngFor="let k of j.franja">
     
                   <div *ngIf="j.nombre_d == dia && k.nombre_f == 'Comida'">
-                      <ion-item (click)="changeColor(i,j,k);" [style.background-color]="k.tomado ? '#17e61785' : 'white'">
+                      <ion-item (click)="changeColor(i,j,k);" [ngClass]="k.tomado ? 'verd' : 'blanc'">
                           <div class="tomar">
                               <div class="nombre">{{i.nombre_p}}</div>
+                              <div>{{i.color}}</div>
                               <div class="cantidad">Cant: {{i.cantidad}}</div>
                             </div> 
                         </ion-item>
@@ -78,9 +86,10 @@
                             <div *ngFor="let k of j.franja">
         
                       <div *ngIf="j.nombre_d == dia && k.nombre_f == 'Cena'">
-                          <ion-item (click)="changeColor(i,j,k);" [style.background-color]="k.tomado ? '#17e61785' : 'white'">
+                          <ion-item (click)="changeColor(i,j,k);" [ngClass]="k.tomado ? 'verd' : 'blanc'">
                               <div class="tomar">
                                   <div class="nombre">{{i.nombre_p}}</div>
+                                  <div>{{i.color}}</div>
                                   <div class="cantidad">Cant: {{i.cantidad}}</div>
                                 </div> 
                             </ion-item>

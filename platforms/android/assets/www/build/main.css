@@ -25701,6 +25701,14 @@ page-comidas .tomar {
   justify-content: space-between;
 }
 
+page-comidas .verd {
+  background-color: green;
+}
+
+page-comidas .blanc {
+  background-color: white;
+}
+
 page-dias .dias {
   margin: 23px 0px;
   padding: 24px 0px;
