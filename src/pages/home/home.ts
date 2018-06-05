@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { SelectorPage } from '../selector/selector';
 import { pacientesService } from '../../services/pacientes.service';
 import { AnadirPacientePage } from '../anadir-paciente/anadir-paciente';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -11,7 +12,7 @@ import { AnadirPacientePage } from '../anadir-paciente/anadir-paciente';
 export class HomePage {
   pacientes: any;
 
-  constructor(public navCtrl: NavController, public PacientesService : pacientesService) {
+  constructor(public navCtrl: NavController, public PacientesService : pacientesService, public alertCtrl: AlertController) {
     /*this.PacientesService.getPacientes().subscribe(pacientes =>{
       this.pacientes = pacientes;
     })*/
@@ -29,7 +30,39 @@ export class HomePage {
   }
 
   deletePaciente(paciente){
-    this.PacientesService.deletePaciente(paciente);
+    const confirm = this.alertCtrl.create({
+      title: 'Borrar Paciente',
+      message: 'Está seguro que desea eliminar este paciente?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Borrar',
+          handler: () => {
+            this.PacientesService.deletePaciente(paciente);
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  
+    //this.PacientesService.deletePaciente(paciente);
+  }
+  reset(){
+    this.PacientesService.resetTomado();
+    
+      const alert = this.alertCtrl.create({
+        title: 'Semana reseteada!',
+        subTitle: 'Todas las pastillas pasan al estado no tomadas',
+        buttons: ['OK']
+      });
+      alert.present();
+    
   }
 
 }

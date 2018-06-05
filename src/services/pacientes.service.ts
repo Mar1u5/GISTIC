@@ -69,9 +69,7 @@ export class pacientesService{
               
         for(let i=0; i < this.pacientes.length; i++){
             if(this.pacientes[i].id == paciente.id){
-                        this.pacientes[i].pastillas.push(pastilla);
-                        
-                    
+                        this.pacientes[i].pastillas.push(pastilla);  
             }
         }
     }
@@ -79,11 +77,30 @@ export class pacientesService{
         for(let i=0; i < this.pacientes.length; i++){
             if(this.pacientes[i].nombre == paciente.nombre){
                 for(let j=0; j < this.pacientes[i].pastillas.length; j++){
-                    if(this.pacientes[i].pastillas[j].nombre_p == pastilla.nombre_p){
+                    if(this.pacientes[i].pastillas[j].nombre_p == pastilla.nombre_p && this.pacientes[i].pastillas[j].color == pastilla.color && this.pacientes[i].pastillas[j].cantidad == pastilla.cantidad){
                         this.pacientes[i].pastillas.splice(j, 1);
                     }
                 }
             }
+        }
+    }
+
+    public resetTomado(){
+
+        for(let i=0; i < this.pacientes.length; i++){
+                for(let j=0; j < this.pacientes[i].pastillas.length; j++){
+                        for(let k=0; k < this.pacientes[i].pastillas[j].dia.length; k++){
+                            
+                                for(let t=0; t < this.pacientes[i].pastillas[j].dia[k].franja.length; t++){
+                                    
+                                        this.pacientes[i].pastillas[j].dia[k].franja[t].tomado = false;
+                                    
+                                }
+                            
+                        }
+                    
+                }
+            
         }
     }
 
@@ -93,7 +110,7 @@ export class pacientesService{
             if(this.pacientes[i].id == paciente.id){
                 for(let j=0; j < this.pacientes[i].pastillas.length; j++){
                     
-                    if(this.pacientes[i].pastillas[j].nombre_p == pastilla.nombre_p){
+                    if(this.pacientes[i].pastillas[j].nombre_p == pastilla.nombre_p && this.pacientes[i].pastillas[j].color == pastilla.color && this.pacientes[i].pastillas[j].cantidad == pastilla.cantidad){
                         for(let k=0; k < this.pacientes[i].pastillas[j].dia.length; k++){
                             if(this.pacientes[i].pastillas[j].dia[k].nombre_d == dia.nombre_d){
                                 for(let t=0; t < this.pacientes[i].pastillas[j].dia[k].franja.length; t++){

@@ -3,7 +3,13 @@ page-home {
 		font-size: 35px;
 		color: red;
 	}
-
+	.reset{
+		position: fixed;
+		left: 0;
+		bottom: 70px;
+		right: 0;
+		margin: 0 17px;
+	}
 	.pacientes{
 		width: 100%;
 		.item{

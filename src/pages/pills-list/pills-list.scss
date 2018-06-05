@@ -12,13 +12,13 @@ page-pills-list {
 			align-items: center;
 			justify-content: space-between;
 			width: calc(100% - 26px);
-			height: 60px;
+			height: 85px;
 			margin: 0 13px;
 			padding: 10px 0;
 			border-bottom: 1px solid #c4c4c4;
 			
 			.nombre{
-				width: calc(100% - 42px - 65px);
+				width: calc(100% - 20px);
 				padding: 0 23px;
 				p:nth-child(1){
 					font-weight: bold;
