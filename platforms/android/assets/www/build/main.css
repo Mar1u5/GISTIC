@@ -25719,6 +25719,14 @@ page-home ion-fab {
   color: red;
 }
 
+page-home .reset {
+  position: fixed;
+  left: 0;
+  bottom: 70px;
+  right: 0;
+  margin: 0 17px;
+}
+
 page-home .pacientes {
   width: 100%;
 }
@@ -25797,14 +25805,14 @@ page-pills-list .pacientes .item {
   -ms-flex-pack: justify;
   justify-content: space-between;
   width: calc(100% - 26px);
-  height: 60px;
+  height: 85px;
   margin: 0 13px;
   padding: 10px 0;
   border-bottom: 1px solid #c4c4c4;
 }
 
 page-pills-list .pacientes .item .nombre {
-  width: calc(100% - 42px - 65px);
+  width: calc(100% - 20px);
   padding: 0 23px;
 }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { pacientesService } from '../../services/pacientes.service';
 import { PillsListPage } from '../pills-list/pills-list';
+import { AlertController } from 'ionic-angular';
 
 
 
@@ -19,16 +20,16 @@ import { PillsListPage } from '../pills-list/pills-list';
 })
 export class AddPastillaPage {
 pastillas;
-color;
-cantidad;
+color= null;
+cantidad = null;
 item;
 pill;
-dia;
-franja;
+dia = null;
+franja = null;
 toma = [];
-pasti;
+pasti = null;
 splitted = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public PacientesService : pacientesService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public PacientesService : pacientesService, public alertCtrl: AlertController) {
     this.item = navParams.get('item');
     this.pastillas = PacientesService.getPastillas();
   }
@@ -37,20 +38,38 @@ splitted = [];
     console.log('ionViewDidLoad AddPastillaPage');
   }
   addPastilla(item){
-    
-      
+
+   if(this.pasti != null && this.color != null && this.cantidad != null && this.dia !=null && this.franja != null ){
+    let exist = this.PacientesService.existPill(this.pasti, this.item);
+    console.log(exist);
+    console.log(this.pasti);
+    if(!exist){  
       let d = []
-    for(let i of this.dia){
-      let t = [];
-      for(let j of this.franja){
-        t.push({nombre_f: j, tomado: false});
+      for(let i of this.dia){
+        let t = [];
+        for(let j of this.franja){
+          t.push({nombre_f: j, tomado: false});
+        }
+        d.push({nombre_d: i, franja: t});
       }
-      d.push({nombre_d: i, franja: t});
-    }
-    this.PacientesService.addPastillas(item, {nombre_p: this.pasti, color: this.color, cantidad: this.cantidad, dia: d});
-    this.navCtrl.setRoot(PillsListPage, {item});   
-      
-      
+      this.PacientesService.addPastillas(item, {nombre_p: this.pasti, color: this.color, cantidad: this.cantidad, dia: d});
+      this.navCtrl.setRoot(PillsListPage, {item});
+    }else{
+      const alert = this.alertCtrl.create({
+        title: 'Medicamento ya existente',
+        subTitle: 'El medicamento '+this.pasti+' ya existe',
+        buttons: ['OK']
+      });
+      alert.present();
+    }   
+  }else{
+    const alert = this.alertCtrl.create({
+      title: 'Faltan campos por rellenar',
+      subTitle: 'Por favor rellene todos los campos',
+      buttons: ['OK']
+    });
+    alert.present();
+  } 
 
 }
 }

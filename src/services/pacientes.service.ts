@@ -104,6 +104,19 @@ export class pacientesService{
         }
     }
 
+    public existPill(pastilla, paciente){
+        for(let i=0; i < this.pacientes.length; i++){
+            if(this.pacientes[i].id == paciente.id){
+                for(let j=0; j < this.pacientes[i].pastillas.length; j++){
+                    if(this.pacientes[i].pastillas[j].nombre_p == pastilla){
+                        return true;
+                    }    
+                }
+                return false; 
+            }
+        }
+    }
+
     public tomado(paciente, pastilla, dia, franja){
 
         for(let i=0; i < this.pacientes.length; i++){

@@ -6,7 +6,7 @@ webpackJsonp([6],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPastillaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pills_list_pills_list__ = __webpack_require__(79);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -22,6 +22,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the AddPastillaPage page.
  *
@@ -29,11 +30,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var AddPastillaPage = /** @class */ (function () {
-    function AddPastillaPage(navCtrl, navParams, PacientesService) {
+    function AddPastillaPage(navCtrl, navParams, PacientesService, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.PacientesService = PacientesService;
+        this.alertCtrl = alertCtrl;
+        this.color = null;
+        this.cantidad = null;
+        this.dia = null;
+        this.franja = null;
         this.toma = [];
+        this.pasti = null;
         this.splitted = [];
         this.item = navParams.get('item');
         this.pastillas = PacientesService.getPastillas();
@@ -42,26 +49,50 @@ var AddPastillaPage = /** @class */ (function () {
         console.log('ionViewDidLoad AddPastillaPage');
     };
     AddPastillaPage.prototype.addPastilla = function (item) {
-        var d = [];
-        for (var _i = 0, _a = this.dia; _i < _a.length; _i++) {
-            var i = _a[_i];
-            var t = [];
-            for (var _b = 0, _c = this.franja; _b < _c.length; _b++) {
-                var j = _c[_b];
-                t.push({ nombre_f: j, tomado: false });
+        if (this.pasti != null && this.color != null && this.cantidad != null && this.dia != null && this.franja != null) {
+            var exist = this.PacientesService.existPill(this.pasti, this.item);
+            console.log(exist);
+            console.log(this.pasti);
+            if (!exist) {
+                var d = [];
+                for (var _i = 0, _a = this.dia; _i < _a.length; _i++) {
+                    var i = _a[_i];
+                    var t = [];
+                    for (var _b = 0, _c = this.franja; _b < _c.length; _b++) {
+                        var j = _c[_b];
+                        t.push({ nombre_f: j, tomado: false });
+                    }
+                    d.push({ nombre_d: i, franja: t });
+                }
+                this.PacientesService.addPastillas(item, { nombre_p: this.pasti, color: this.color, cantidad: this.cantidad, dia: d });
+                this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pills_list_pills_list__["a" /* PillsListPage */], { item: item });
             }
-            d.push({ nombre_d: i, franja: t });
+            else {
+                var alert = this.alertCtrl.create({
+                    title: 'Medicamento ya existente',
+                    subTitle: 'El medicamento ' + this.pasti + ' ya existe',
+                    buttons: ['OK']
+                });
+                alert.present();
+            }
         }
-        this.PacientesService.addPastillas(item, { nombre_p: this.pasti, color: this.color, cantidad: this.cantidad, dia: d });
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pills_list_pills_list__["a" /* PillsListPage */], { item: item });
+        else {
+            var alert = this.alertCtrl.create({
+                title: 'Faltan campos por rellenar',
+                subTitle: 'Por favor rellene todos los campos',
+                buttons: ['OK']
+            });
+            alert.present();
+        }
     };
     AddPastillaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-add-pastilla',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/add-pastilla/add-pastilla.html"*/'<!--\n  Generated template for the AddPastillaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>addPastilla</ion-title>\n    <ion-buttons right>\n        <img src="assets/imgs/pillnow.png" alt="pillnow">\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n    <div>\n        <ion-list>\n          <ion-item class="dia">\n            <ion-label>Pastilla</ion-label>\n            <ion-select [(ngModel)]="pasti" multiple="false">\n                <ion-option *ngFor="let pastilla of pastillas">{{pastilla.nombre}}</ion-option>\n              </ion-select>\n         </ion-item>\n          <ion-item>\n              <ion-label floating>Color</ion-label>\n              <ion-input id="color" type="text" [(ngModel)]=color></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label floating>Cantidad</ion-label>\n              <ion-input id="cantidad" type="number" [(ngModel)]=cantidad></ion-input>\n          </ion-item>\n          <ion-item class="dia">\n              <ion-label>Día</ion-label>\n              <ion-select [(ngModel)]="dia" multiple="True">\n                  <ion-option>Lunes</ion-option>\n                  <ion-option>Martes</ion-option>\n                  <ion-option>Miercoles</ion-option>\n                  <ion-option>Jueves</ion-option>\n                  <ion-option>Viernes</ion-option>\n                  <ion-option>Sabado</ion-option>\n                  <ion-option>Domingo</ion-option>\n                </ion-select>\n           </ion-item>\n           <ion-item class="dia">\n              <ion-label>Franja horaria</ion-label>\n              <ion-select [(ngModel)]="franja" multiple="True">\n                  <ion-option>Desayuno</ion-option>\n                  <ion-option>Comida</ion-option>\n                  <ion-option>Cena</ion-option>\n                </ion-select>\n           </ion-item>\n        \n        </ion-list>\n        <button ion-button block (click)="addPastilla(item)">Guardar</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/add-pastilla/add-pastilla.html"*/,
+            selector: 'page-add-pastilla',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/add-pastilla/add-pastilla.html"*/'<!--\n  Generated template for the AddPastillaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>addPastilla</ion-title>\n    <ion-buttons right>\n        <img src="assets/imgs/pillnow.png" alt="pillnow">\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n    <div>\n        <ion-list>\n          <ion-item class="dia">\n            <ion-label>Pastilla</ion-label>\n            <ion-select [(ngModel)]="pasti" multiple="false">\n                <ion-option *ngFor="let pastilla of pastillas">{{pastilla.nombre}}</ion-option>\n              </ion-select>\n         </ion-item>\n          <ion-item>\n              <ion-label floating>Color</ion-label>\n              <ion-input id="color" type="text" [(ngModel)]=color maxlength="20"></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label floating>Cantidad</ion-label>\n              <ion-input id="cantidad" type="number" [(ngModel)]=cantidad maxlength="4"></ion-input>\n          </ion-item>\n          <ion-item class="dia">\n              <ion-label>Día</ion-label>\n              <ion-select [(ngModel)]="dia" multiple="True">\n                  <ion-option>Lunes</ion-option>\n                  <ion-option>Martes</ion-option>\n                  <ion-option>Miercoles</ion-option>\n                  <ion-option>Jueves</ion-option>\n                  <ion-option>Viernes</ion-option>\n                  <ion-option>Sabado</ion-option>\n                  <ion-option>Domingo</ion-option>\n                </ion-select>\n           </ion-item>\n           <ion-item class="dia">\n              <ion-label>Franja horaria</ion-label>\n              <ion-select [(ngModel)]="franja" multiple="True">\n                  <ion-option>Desayuno</ion-option>\n                  <ion-option>Comida</ion-option>\n                  <ion-option>Cena</ion-option>\n                </ion-select>\n           </ion-item>\n        \n        </ion-list>\n        <button ion-button block (click)="addPastilla(item)">Guardar</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/add-pastilla/add-pastilla.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
     ], AddPastillaPage);
     return AddPastillaPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=add-pastilla.js.map
@@ -74,7 +105,7 @@ var AddPastillaPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnadirPacientePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(74);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -90,6 +121,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the AnadirPacientePage page.
  *
@@ -97,23 +129,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var AnadirPacientePage = /** @class */ (function () {
-    function AnadirPacientePage(navCtrl, navParams, PacientesService) {
+    function AnadirPacientePage(navCtrl, navParams, PacientesService, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.PacientesService = PacientesService;
+        this.alertCtrl = alertCtrl;
+        this.paciente = null;
     }
     AnadirPacientePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad AnadirPacientePage');
     };
     AnadirPacientePage.prototype.addPaciente = function () {
-        this.PacientesService.addPaciente({ id: Date.now(), nombre: this.paciente, pastillas: [] });
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+        if (this.paciente != null) {
+            this.PacientesService.addPaciente({ id: Date.now(), nombre: this.paciente, pastillas: [] });
+            this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+        }
+        else {
+            var alert_1 = this.alertCtrl.create({
+                title: 'Campo paciente vacío',
+                subTitle: 'Por favor rellene el campo paciente',
+                buttons: ['OK']
+            });
+            alert_1.present();
+        }
     };
     AnadirPacientePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-anadir-paciente',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/anadir-paciente/anadir-paciente.html"*/'<!--\n  Generated template for the AnadirPacientePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Añadir Paciente</ion-title>\n    <ion-buttons right>\n        <img src="assets/imgs/pillnow.png" alt="pillnow" height="30">\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <div>\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Nombre Paciente</ion-label>\n      <ion-input id="nombre" type="text" [(ngModel)]=paciente></ion-input>\n    </ion-item>\n  \n  </ion-list>\n  <button ion-button block (click)="addPaciente()">Guardar Paciente</button>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/anadir-paciente/anadir-paciente.html"*/,
+            selector: 'page-anadir-paciente',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/anadir-paciente/anadir-paciente.html"*/'<!--\n  Generated template for the AnadirPacientePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Añadir Paciente</ion-title>\n    <ion-buttons right>\n        <img src="assets/imgs/pillnow.png" alt="pillnow" height="30">\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <div>\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Nombre Paciente</ion-label>\n      <ion-input id="nombre" type="text" [(ngModel)]=paciente maxlength="30"></ion-input>\n    </ion-item>\n  \n  </ion-list>\n  <button ion-button block (click)="addPaciente()">Guardar Paciente</button>\n</div>\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/anadir-paciente/anadir-paciente.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], AnadirPacientePage);
     return AnadirPacientePage;
 }());
@@ -128,7 +172,7 @@ var AnadirPacientePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComidasPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dias_dias__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_pacientes_service__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -266,7 +310,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(446);
@@ -464,6 +508,18 @@ var pacientesService = /** @class */ (function () {
             }
         }
     };
+    pacientesService.prototype.existPill = function (pastilla, paciente) {
+        for (var i = 0; i < this.pacientes.length; i++) {
+            if (this.pacientes[i].id == paciente.id) {
+                for (var j = 0; j < this.pacientes[i].pastillas.length; j++) {
+                    if (this.pacientes[i].pastillas[j].nombre_p == pastilla) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+    };
     pacientesService.prototype.tomado = function (paciente, pastilla, dia, franja) {
         for (var i = 0; i < this.pacientes.length; i++) {
             if (this.pacientes[i].id == paciente.id) {
@@ -485,9 +541,10 @@ var pacientesService = /** @class */ (function () {
     };
     pacientesService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _a || Object])
     ], pacientesService);
     return pacientesService;
+    var _a;
 }());
 
 //# sourceMappingURL=pacientes.service.js.map
@@ -500,7 +557,7 @@ var pacientesService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(74);
@@ -546,7 +603,7 @@ var MyApp = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectorPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pills_list_pills_list__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dias_dias__ = __webpack_require__(80);
@@ -607,7 +664,7 @@ var SelectorPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selector_selector__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_pacientes_service__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__anadir_paciente_anadir_paciente__ = __webpack_require__(138);
@@ -680,10 +737,9 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n		Lista Pacientes\n  </ion-title>\n  <ion-buttons right>\n      <img src="assets/imgs/pillnow.png" alt="pillnow" height="30">\n  </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  \n  <div class="pacientes" *ngFor="let paciente of pacientes">\n      <div class="item">\n        <div class="nombre" (click)="nextPage(paciente)">\n          <p>{{ paciente.nombre }}</p>\n        </div>\n        <p class="trash" (click)="deletePaciente(paciente)"><ion-icon id="trash" name="md-trash"></ion-icon></p>\n      </div>\n    </div>\n    <div class="reset">\n      <button ion-button block (click)="reset()">Reset Semana</button>\n    </div>\n    \n\n  <ion-fab right bottom>\n     <ion-icon name="md-add-circle" (click)="addPaciente()"></ion-icon>\n  </ion-fab>\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_pacientes_service__["a" /* pacientesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_pacientes_service__["a" /* pacientesService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__services_pacientes_service__["a" /* pacientesService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -696,7 +752,7 @@ var HomePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PillsListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__add_pastilla_add_pastilla__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__selector_selector__ = __webpack_require__(59);
@@ -765,10 +821,9 @@ var PillsListPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-pills-list',template:/*ion-inline-start:"/Users/albert/Desktop/GISTIC/src/pages/pills-list/pills-list.html"*/'<!--\n  Generated template for the PillsListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n      <ion-buttons left>\n          <button ion-button icon-only (click)="goBack(item)">\n              <ion-icon name="arrow-back"></ion-icon>\n          </button>\n      </ion-buttons>\n    <ion-title>{{item.nombre}}</ion-title>\n    <ion-buttons right>\n        <img src="assets/imgs/pillnow.png" alt="pillnow" height="30">\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content >\n  <div class="pacientes" *ngFor="let i of item.pastillas">\n      <div class="item">\n          <div class="nombre">\n            <p>{{i.nombre_p}}, {{i.color}}, {{i.cantidad}}</p>\n            <p><span *ngFor="let j of i.dia">{{j.nombre_d}} </span></p>  \n          </div>\n          <p class="trash" (click)="deletePastilla(item,i)"><ion-icon id="trash" name="md-trash"></ion-icon></p>\n        </div>\n  </div> \n    <ion-fab right bottom>\n       <ion-icon name="md-add-circle" (click)="goToAddPage(item)"></ion-icon>\n    </ion-fab>\n</ion-content>\n'/*ion-inline-end:"/Users/albert/Desktop/GISTIC/src/pages/pills-list/pills-list.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_pacientes_service__["a" /* pacientesService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], PillsListPage);
     return PillsListPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=pills-list.js.map
@@ -781,7 +836,7 @@ var PillsListPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiasPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__comidas_comidas__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__selector_selector__ = __webpack_require__(59);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
